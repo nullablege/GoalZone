@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="GoalZone.WebUI/GoalZone.WebUI.csproj" />
+  <Project Path="GoalZone.API/GoalZone.API.csproj" />
+</Solution>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GoalZone Admin — Maç İstatistiği Ekle</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080d18;--bg2:#0c1220;--card:#111827;--card2:#16202f;--elevated:#1c2d42;
+  --green:#00e676;--blue:#2979ff;--live:#ff1744;--gold:#ffd600;--yellow:#ffc107;--red:#f44336;
+  --t1:#eef2ff;--t2:#7b96c4;--t3:#3d5478;--border:#1a2640;
+  --r1:8px;--r2:12px;--r3:16px;
+  --tr:all .22s cubic-bezier(.4,0,.2,1);
+  --fd:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--bg);color:var(--t1);min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 15% 0%,rgba(41,121,255,.07) 0%,transparent 55%),
+    radial-gradient(ellipse at 85% 0%,rgba(0,230,118,.04) 0%,transparent 50%)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--elevated);border-radius:3px}
+a{text-decoration:none;color:inherit}
+
+/* NAVBAR */
+.nb{background:rgba(8,13,24,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:1000;box-shadow:0 2px 24px rgba(0,0,0,.5)}
+.nb-inner{max-width:1120px;margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;padding:14px 0}
+.brand-ico{width:34px;height:34px;background:linear-gradient(135deg,var(--green),var(--blue));
+  border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:17px; color: #fff;}
+.brand-txt{font-family:var(--fd);font-size:21px;font-weight:800;letter-spacing:1px}
+.brand-txt span{color:var(--green)}
+.nav-links{display:flex}
+.nl{font-family:var(--fd);font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--t2);padding:22px 15px;position:relative;transition:var(--tr)}
+.nl::after{content:'';position:absolute;bottom:0;left:15px;right:15px;height:2px;
+  background:var(--blue);transform:scaleX(0);transition:var(--tr)}
+.nl:hover,.nl.active{color:var(--t1)}.nl:hover::after,.nl.active::after{transform:scaleX(1)}
+
+/* LAYOUT */
+.wrap{max-width:1120px;margin:0 auto;padding:40px 20px}
+.page-title{font-family:var(--fd);font-size:32px;font-weight:800;letter-spacing:1px;margin-bottom:8px;}
+.page-subtitle{color:var(--t2);font-size:14px;margin-bottom:30px;}
+
+/* ADMIN PANEL FORMS */
+.admin-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.form-label {
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--t2);
+  margin-bottom: 6px;
+  display: block;
+  text-align: center;
+}
+.form-control, .form-select {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--t1);
+  border-radius: var(--r1);
+  padding: 12px 16px;
+  font-size: 15px;
+  transition: var(--tr);
+  text-align: center;
+}
+.form-select { text-align: left; }
+.form-control:focus, .form-select:focus {
+  background: var(--card2);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(41,121,255,0.15);
+  color: var(--t1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--green), var(--blue));
+  border: none;
+  font-family: var(--fd);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 14px 30px;
+  border-radius: var(--r1);
+  font-size: 16px;
+  transition: var(--tr);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(41,121,255,0.3);
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--fd);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--t1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.section-head i {
+  color: var(--blue);
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r1);
+  padding: 15px 20px;
+  margin-bottom: 12px;
+}
+.stat-name {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  flex: 1;
+  text-align: center;
+}
+.stat-input-group {
+  width: 100px;
+}
+</style>
+</head>
+<body>
+
+<nav class="nb">
+  <div class="nb-inner">
+    <a href="match-create.html" class="brand">
+      <div class="brand-ico"><i class="bi bi-shield-lock-fill"></i></div>
+      <span class="brand-txt">GoalZone <span>Admin</span></span>
+    </a>
+    <div class="nav-links d-none d-lg-flex">
+      <a href="match-create.html" class="nl">Maç Ekle</a>
+      <a href="match-event-create.html" class="nl">Olay Ekle</a>
+      <a href="match-statistic-create.html" class="nl active">İstatistik Ekle</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <h1 class="page-title">YENİ MAÇ İSTATİSTİĞİ EKLE</h1>
+  <p class="page-subtitle">Bir maça ait teknik verileri ve karşılaşma istatistiklerini sisteme girin.</p>
+
+  <div class="admin-card">
+    <form action="#" method="POST">
+      
+      <div class="section-head"><i class="bi bi-link-45deg"></i> Bağlantı (MatchId)</div>
+      <div class="row g-4">
+        <div class="col-12">
+          <select class="form-select" style="max-width: 500px">
+            <option value="">-- Hangi Maçın İstatistiği? --</option>
+            <option value="1">Arsenal vs Liverpool (11.04.2025)</option>
+            <option value="2">Manchester City vs Chelsea (12.04.2025)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section-head mt-5"><i class="bi bi-bar-chart-fill"></i> Karşılaştırmalı Veriler</div>
+      
+      <div class="row mb-3 px-3">
+        <div class="col-3 text-center" style="color:var(--t2); font-family:var(--fd); font-weight:700; letter-spacing:1px;">EV SAHİBİ</div>
+        <div class="col-6"></div>
+        <div class="col-3 text-center" style="color:var(--t2); font-family:var(--fd); font-weight:700; letter-spacing:1px;">DEPLASMAN</div>
+      </div>
+
+      <!-- Possession -->
+      <div class="stat-row">
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="HomePossession" value="50" min="0" max="100">
+        </div>
+        <div class="stat-name">Topla Oynama (%)</div>
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="AwayPossession" value="50" min="0" max="100">
+        </div>
+      </div>
+
+      <!-- Shots -->
+      <div class="stat-row">
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="HomeShots" value="0" min="0">
+        </div>
+        <div class="stat-name">Toplam Şut</div>
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="AwayShots" value="0" min="0">
+        </div>
+      </div>
+
+      <!-- Shots on Target -->
+      <div class="stat-row">
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="HomeShotsOnTarget" value="0" min="0">
+        </div>
+        <div class="stat-name">İsabetli Şut</div>
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="AwayShotsOnTarget" value="0" min="0">
+        </div>
+      </div>
+
+      <!-- Corners -->
+      <div class="stat-row">
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="HomeCorners" value="0" min="0">
+        </div>
+        <div class="stat-name">Korner</div>
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="AwayCorners" value="0" min="0">
+        </div>
+      </div>
+
+      <!-- Fouls -->
+      <div class="stat-row">
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="HomeFouls" value="0" min="0">
+        </div>
+        <div class="stat-name">Faul</div>
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="AwayFouls" value="0" min="0">
+        </div>
+      </div>
+
+      <!-- Yellow Cards -->
+      <div class="stat-row">
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="HomeYellowCards" value="0" min="0">
+        </div>
+        <div class="stat-name text-warning">Sarı Kart</div>
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="AwayYellowCards" value="0" min="0">
+        </div>
+      </div>
+
+      <!-- Red Cards -->
+      <div class="stat-row">
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="HomeRedCards" value="0" min="0">
+        </div>
+        <div class="stat-name text-danger">Kırmızı Kart</div>
+        <div class="stat-input-group">
+          <input type="number" class="form-control" name="AwayRedCards" value="0" min="0">
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-5">
+        <button type="submit" class="btn btn-primary"><i class="bi bi-bar-chart-line me-2"></i> İstatistikleri Kaydet</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

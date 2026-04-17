@@ -1,0 +1,392 @@
+[
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetMatchDetail",
+    "RelativePath": "api/Matches/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "GoalZone.API.DTOs.MatchDTOs.MatchDetailDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "AddEvent",
+    "RelativePath": "api/Matches/AddEvent",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "GoalZone.API.DTOs.AdminDTOs.AddEventDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "AddMatch",
+    "RelativePath": "api/Matches/AddMatch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "GoalZone.API.DTOs.AdminDTOs.AddMatchDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "AddStatistic",
+    "RelativePath": "api/Matches/AddStatistic",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "GoalZone.API.DTOs.AdminDTOs.AddStatisticsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "AddSubstitution",
+    "RelativePath": "api/Matches/AddSubstitution",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "GoalZone.API.DTOs.AdminDTOs.AddSubstitutionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetEventCreatePage",
+    "RelativePath": "api/Matches/GetEventCreatePage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "GoalZone.API.DTOs.AdminDTOs.EventCreatePageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetFeaturedMatch",
+    "RelativePath": "api/Matches/GetFeaturedMatch",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "weekNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "GoalZone.API.DTOs.MatchDTOs.ResultFeatureMatchDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetFinishedMatches",
+    "RelativePath": "api/Matches/GetFinishedMatches",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "weekNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[GoalZone.API.DTOs.MatchDTOs.ResultMatchDto, GoalZone.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetFixtures",
+    "RelativePath": "api/Matches/GetFixtures",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "weekNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[GoalZone.API.DTOs.MatchDTOs.FixtureMatchDto, GoalZone.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetFixturesPage",
+    "RelativePath": "api/Matches/GetFixturesPage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "weekNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "GoalZone.API.DTOs.PageDTOs.FixturesPageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetIndexPage",
+    "RelativePath": "api/Matches/GetIndexPage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "weekNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "GoalZone.API.DTOs.PageDTOs.IndexPageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetLiveMatches",
+    "RelativePath": "api/Matches/GetLiveMatches",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "weekNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[GoalZone.API.DTOs.MatchDTOs.ResultMatchDto, GoalZone.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetMatchCreatePage",
+    "RelativePath": "api/Matches/GetMatchCreatePage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "GoalZone.API.DTOs.AdminDTOs.MatchCreatePageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetStatisticCreatePage",
+    "RelativePath": "api/Matches/GetStatisticCreatePage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "matchId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "GoalZone.API.DTOs.AdminDTOs.StatisticCreatePageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.MatchesController",
+    "Method": "GetUpcomingMatches",
+    "RelativePath": "api/Matches/GetUpcomingMatches",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "weekNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[GoalZone.API.DTOs.MatchDTOs.ResultMatchDto, GoalZone.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.StandingsController",
+    "Method": "GetStandings",
+    "RelativePath": "api/Standings/GetStandings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "seasonId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[GoalZone.API.DTOs.StandingDTOs.StandingDto, GoalZone.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GoalZone.API.Controllers.StandingsController",
+    "Method": "GetStandingsPage",
+    "RelativePath": "api/Standings/GetStandingsPage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "seasonId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "GoalZone.API.DTOs.StandingDTOs.StandingsPageDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

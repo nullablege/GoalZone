@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GoalZone Admin — Yeni Olay Ekle</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080d18;--bg2:#0c1220;--card:#111827;--card2:#16202f;--elevated:#1c2d42;
+  --green:#00e676;--blue:#2979ff;--live:#ff1744;--gold:#ffd600;--yellow:#ffc107;--red:#f44336;
+  --t1:#eef2ff;--t2:#7b96c4;--t3:#3d5478;--border:#1a2640;
+  --r1:8px;--r2:12px;--r3:16px;
+  --tr:all .22s cubic-bezier(.4,0,.2,1);
+  --fd:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:var(--bg);color:var(--t1);min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 15% 0%,rgba(41,121,255,.07) 0%,transparent 55%),
+    radial-gradient(ellipse at 85% 0%,rgba(0,230,118,.04) 0%,transparent 50%)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--elevated);border-radius:3px}
+a{text-decoration:none;color:inherit}
+
+/* NAVBAR */
+.nb{background:rgba(8,13,24,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:1000;box-shadow:0 2px 24px rgba(0,0,0,.5)}
+.nb-inner{max-width:1120px;margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;padding:14px 0}
+.brand-ico{width:34px;height:34px;background:linear-gradient(135deg,var(--green),var(--blue));
+  border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:17px; color: #fff;}
+.brand-txt{font-family:var(--fd);font-size:21px;font-weight:800;letter-spacing:1px}
+.brand-txt span{color:var(--green)}
+.nav-links{display:flex}
+.nl{font-family:var(--fd);font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--t2);padding:22px 15px;position:relative;transition:var(--tr)}
+.nl::after{content:'';position:absolute;bottom:0;left:15px;right:15px;height:2px;
+  background:var(--blue);transform:scaleX(0);transition:var(--tr)}
+.nl:hover,.nl.active{color:var(--t1)}.nl:hover::after,.nl.active::after{transform:scaleX(1)}
+
+/* LAYOUT */
+.wrap{max-width:1120px;margin:0 auto;padding:40px 20px}
+.page-title{font-family:var(--fd);font-size:32px;font-weight:800;letter-spacing:1px;margin-bottom:8px;}
+.page-subtitle{color:var(--t2);font-size:14px;margin-bottom:30px;}
+
+/* ADMIN PANEL FORMS */
+.admin-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.form-label {
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--t2);
+  margin-bottom: 6px;
+}
+.form-control, .form-select {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--t1);
+  border-radius: var(--r1);
+  padding: 12px 16px;
+  font-size: 15px;
+  transition: var(--tr);
+}
+.form-control:focus, .form-select:focus {
+  background: var(--card2);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(41,121,255,0.15);
+  color: var(--t1);
+}
+.form-control::placeholder {
+  color: var(--t3);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--green), var(--blue));
+  border: none;
+  font-family: var(--fd);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 14px 30px;
+  border-radius: var(--r1);
+  font-size: 16px;
+  transition: var(--tr);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(41,121,255,0.3);
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--fd);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--t1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.section-head i {
+  color: var(--blue);
+}
+
+/* Specific Event Visuals */
+.event-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot.goal { background-color: var(--green); }
+.dot.yellow { background-color: var(--yellow); }
+.dot.red { background-color: var(--red); }
+
+</style>
+</head>
+<body>
+
+<nav class="nb">
+  <div class="nb-inner">
+    <a href="match-create.html" class="brand">
+      <div class="brand-ico"><i class="bi bi-shield-lock-fill"></i></div>
+      <span class="brand-txt">GoalZone <span>Admin</span></span>
+    </a>
+    <div class="nav-links d-none d-lg-flex">
+      <a href="match-create.html" class="nl">Maç Ekle</a>
+      <a href="match-event-create.html" class="nl active">Olay Ekle</a>
+      <a href="match-statistic-create.html" class="nl">İstatistik Ekle</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <h1 class="page-title">YENİ MAÇ OLAYI EKLE</h1>
+  <p class="page-subtitle">Seçili maç için yeni etkinlik/olay (Gol, Kart vb.) tanımlayın.</p>
+
+  <div class="admin-card">
+    <form action="#" method="POST">
+      
+      <div class="section-head"><i class="bi bi-lightning-charge-fill"></i> Olay Detayları</div>
+      
+      <div class="row g-4">
+        <div class="col-md-6">
+          <label class="form-label">Maç Seçimi (MatchId)</label>
+          <select class="form-select">
+            <option value="">-- Maç Seçin --</option>
+            <option value="1">Arsenal vs Liverpool (11.04.2025)</option>
+            <option value="2">Manchester City vs Chelsea (12.04.2025)</option>
+          </select>
+        </div>
+        
+        <div class="col-md-6">
+          <label class="form-label">Takım Seçimi (TeamId)</label>
+          <select class="form-select">
+            <option value="">-- Takım Seçin --</option>
+            <option value="1">Arsenal</option>
+            <option value="2">Liverpool</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-4 mt-2">
+        <div class="col-md-4">
+          <label class="form-label">Oyuncu (PlayerId)</label>
+          <select class="form-select">
+            <option value="">-- Oyuncu Seçin --</option>
+            <option value="10">Bukayo Saka</option>
+            <option value="11">Martin Ødegaard</option>
+            <option value="12">Mohamed Salah</option>
+          </select>
+        </div>
+        
+        <div class="col-md-4">
+          <label class="form-label">Olay Türü (EventType)</label>
+          <select class="form-select">
+            <option value="0">⚽ Goal (0)</option>
+            <option value="1">🟨 Yellow Card (1)</option>
+            <option value="2">🟥 Red Card (2)</option>
+          </select>
+        </div>
+        
+        <div class="col-md-4">
+          <label class="form-label">Dakika (Minute)</label>
+          <input type="number" class="form-control" placeholder="Örn: 45" min="1" max="130">
+        </div>
+      </div>
+
+      <div class="row g-4 mt-2">
+        <div class="col-12">
+          <label class="form-label">Ek Açıklama (Description - Opsiyonel)</label>
+          <textarea class="form-control" rows="3" placeholder="Olay hakkında detaylı açıklama (Asist: ..., VAR kararı vs.)"></textarea>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-5">
+        <button type="submit" class="btn btn-primary"><i class="bi bi-save me-2"></i> Olayı Kaydet</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
